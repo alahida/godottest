@@ -1,0 +1,160 @@
+[gd_scene load_steps=20 format=3 uid="uid://x7baopel0ia1"]
+
+[ext_resource type="Script" uid="uid://cr6xs848m8apf" path="res://scripts/leaningcointemplate.gd" id="1_d15lj"]
+[ext_resource type="Texture2D" uid="uid://jarsukbatke4" path="res://brackeys_platformer_assets/sprites/coin.png" id="1_ir2l7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d15lj"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcblc"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hupr"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g8j7"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lylc"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vtu0"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byu5i"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t4y4"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dfqa"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78off"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7fne"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ntde"]
+atlas = ExtResource("1_ir2l7")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwpla"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_d15lj")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_hcblc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hupr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g8j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lylc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vtu0")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_byu5i")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_3t4y4")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_7dfqa")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_78off")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_x7fne")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_4ntde")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_d15lj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_tbljp"]
+resource_name = "lean"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5144614, 0.7, 4.5015373, 5.0588703, 5.233333, 9.881946),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.13439035240356317, 0.0, 0.0, -0.08028514559173931, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6qi50"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ewri"]
+_data = {
+&"RESET": SubResource("Animation_6qi50"),
+&"lean": SubResource("Animation_tbljp")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ir2l7"]
+radius = 5.0
+
+[node name="coin" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_d15lj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fwpla")
+autoplay = "default"
+frame_progress = 0.54419917
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_4ewri")
+}
+autoplay = "lean"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ir2l7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
