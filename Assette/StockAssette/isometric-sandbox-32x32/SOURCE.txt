@@ -1,0 +1,5 @@
+TITLE    | Isometric Tiles Template for 32x32 pixel art
+AUTHOR   | javikolog @ itch.io [https://route1rodent.itch.io/]
+LINK     | https://route1rodent.itch.io/isometric-sandbox-pixel-world-32x32
+ACCESSED | 2025.OCT.20
+UPLOADED | 2021.MAY.05
