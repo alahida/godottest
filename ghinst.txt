@@ -1,0 +1,25 @@
+setup git on command line (ubuntu)
+	- make sure git is installed with `git --version`, run `sudo apt install git` if not.
+	- configure git with `git config --global user.name "Your Name"` and `git config --global user.email "your.email@example.com"` 
+	- generate ssh keys with `ssh-keygen -t rsa -b 4096 -C "your.email@example.com"` (same email as in config stage
+	- add SSH key to GitHub account under Settings -> SSH and GPG keys -> New SSH key.
+
+copy repository from github to local machine using ssh 
+	- use `git@github.com:alahida/godottest.git` 
+	- commands needed if copying already setup repository (THIS IS WHAT YOU NEED TO DO!):
+		git clone git@github.com:alahida/godottest.git
+
+	- commands needed if new repository (JUST FOR LEARNING!): 
+		git init (initializes a local git repository, adds .git files to empty repository)
+		git add . (adds all local files in current folder and any subfolders where a .git file is present. .git only necessary in root folder of project to be included in this command. can replace wildcard with specific file names. only need to call this command if it is a new file, not before every commit.)
+		git commit -m "message" (commits the file for pushing to github repository)
+		git remote add origin git@github.com:alahida/godottest.git (will specify URL of remote repository to push to. this is our test repository.)
+		git push -u origin main (push to main branch, or any other branch, just specify name).
+
+in general:
+	- keep branch upto date with `git pull`, `git status`, and `git fetch` often. 
+	- use `git help` for man pages
+	- use `git diff` for the changes between your working directory and staged changes or `git diff HEAD` for different between your current directory and the last commit on that branch. 
+	- use `git branch "branchname"` to create a new branch, and add `-d` flag to delete the branch. create and use a new branch for any new feature.  
+	- use `git checkout "branchname"` to switch branches.
+	- git merge is easier to do on the github site, imo. 
